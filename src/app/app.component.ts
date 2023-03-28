@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './app-service/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'auth-firebased';
+export class AppComponent implements OnInit {
+  title = 'auth-firebased'
+
+  constructor(private auth: AuthService){
+
+  }
+ngOnInit(): void {
+  this.auth.autosigninUser();
+  
+}
+
 }

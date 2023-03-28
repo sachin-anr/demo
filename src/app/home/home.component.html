@@ -1,0 +1,147 @@
+<app-page-header icon="home">
+  <h2>Dashboard</h2>
+
+  <button mat-flat-button color="primary" class="action" (click)="openPopup()">
+    Show Data
+  </button>
+
+  <button routerLink="/sales" mat-flat-button color="primary" class="action">
+    <mat-icon class="mr-2">add</mat-icon>
+    <span>New sale</span>
+  </button>
+</app-page-header>
+<div
+  class="modal"
+  style="margin: 13.75rem auto"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{ display: displayStyle }"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" style="margin: initial; left: 60px">
+      <div
+        style="
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid #dee2e6;
+        "
+      >
+        <h4 class="modal-title">New Employee</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onClick()">
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label">Name</label>
+            </div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <div class="col-auto">
+              <input
+                type="text"
+                [formControlName]="'name'"
+                id="empName"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label">Designation</label>
+            </div>
+            <div class="col-auto">
+              <input
+                type="text"
+                id="designation"
+                [formControlName]="'designation'"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <br />
+          <div class="row g-3 align-items-center">
+            <div class="col-auto">
+              <label class="col-form-label">Department</label>
+            </div>
+            <div class="col-auto">
+              <input
+                list="dept"
+                [formControlName]="'department'"
+                class="form-control"
+                name="department"
+              />
+              <datalist id="dept">
+                <option value="Development"></option>
+                <option value="Quality Testing"></option>
+                <option value="Business Analyst"></option>
+                <option value="DataBase"></option>
+              </datalist>
+            </div>
+          </div>
+          <br />
+          <div class="form-check">
+            <label class="form-check-label" for="status"> Status </label>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              [formControlName]="'status'"
+              id="status"
+            />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">New Employee</button>
+            <button type="button" class="btn btn-danger" (click)="closePopup()">
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row main-div" >
+  <div class="card p-3 mb-2" *ngFor="let item of empData | async">
+    <div class="d-flex justify-content-between">
+      <div class="d-flex flex-row align-items-center">
+        <div class="ms-2 c-details">
+          <h6 class="mb-0">
+            Name :: <span>{{ item.name }}</span>
+          </h6>
+          <h5>
+            department :: <span>{{ item.dept }}</span>
+          </h5>
+          <h5>
+            designation :: <span>{{ item.designation }}</span>
+          </h5>
+        </div>
+        <a
+          class="btn btn-primary"
+          routerLink="../view-data"
+          [state]="{ data: item.userId }" 
+        >
+          View Details</a
+        >
+      </div>
+    </div>
+    <div class="badge"><span>Design</span></div>
+  </div>
+</div>
+<!-- </div>
+    </div> -->
+<!-- <div class="card p-3 mb-2" *ngFor="let emp of empData">
+          <div class="d-flex flex-row align-items-center">
+              <p class="card-title">Application Name:{{emp.name}}</p>
+          </div>
+          <span class="option-btns"></span>
+          <div class="container optn-div">
+              <a  class="sml-btns" style="background-color: red;"><i
+                      class="fa fa-times sm-icons" aria-hidden="true"></i></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a [routerLink]="['myapp-info']" class="sml-btns" style="background-color: blue;"><i
+                      class="fa fa-info-circle sm-icons" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a routerLink="#" class="sml-btns" style="background-color: skyblue;"><i class="fa fa-cog sm-icons"
+                      aria-hidden="true"></i></a>
+          </div>
+      </div> -->

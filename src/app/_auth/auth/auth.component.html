@@ -1,0 +1,30 @@
+
+<br>
+<br>
+<br>
+<br>
+<div class="container" id="container">x
+	
+	<div class="form-container sign-in-container">
+		<div *ngIf="error" class="alert alert-danger" role="alert">
+			<strong>An error Occured  : </strong> {{error}}
+		  </div>
+		<form  [formGroup]="form" (ngSubmit)="onClick()" >
+			<h1>Sign In</h1>
+			<input type="email" [formControlName]="'email'" class="form-control" placeholder="Email"/>
+			<input type="password" [formControlName]="'password'" class="form-control" placeholder="Password"/>
+			<a href="#">Forgot your password?</a>
+			<button type="submit" >Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" (click)="signup()" >Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+

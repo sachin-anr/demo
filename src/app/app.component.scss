@@ -1,0 +1,8 @@
+::after, ::before {
+    box-sizing: border-box;
+    /* height: fit-content; */
+    /* height: 14vh; */
+    scroll-behavior: unset;
+    overflow-x: hidden;
+    overflow-y: hidden;
+   }
